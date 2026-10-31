@@ -5,87 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Journey with TP-Link xx530v V2</title>
     <style>
-      :root {
-        --bg: #0f172a;
-        --panel: #111827;
-        --panel-alt: #1f2937;
-        --text: #e5e7eb;
-        --muted: #cbd5e1;
-        --accent: #7dd3fc;
-        --line: rgba(148, 163, 184, 0.25);
-      }
-
-      * { box-sizing: border-box; }
-
       body {
+        font-family: Arial, sans-serif;
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: var(--bg);
-        color: var(--text);
+        background: #0f172a;
+        color: #e5e7eb;
         line-height: 1.7;
       }
-
-      .container {
-        max-width: 980px;
+      .wrap {
+        max-width: 900px;
         margin: 0 auto;
-        padding: 48px 20px 72px;
+        padding: 48px 20px 80px;
       }
-
       .card {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 28px 32px;
+        background: #111827;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 12px;
+        padding: 28px 30px;
       }
-
-      h1 {
-        margin-top: 0;
-        margin-bottom: 18px;
-        font-size: clamp(2rem, 3vw, 2.8rem);
-        line-height: 1.2;
-      }
-
-      p {
-        margin: 0 0 18px;
-        color: var(--muted);
-        font-size: 1.05rem;
-      }
-
-      a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      a:hover { text-decoration: underline; }
-
-      .meta {
-        margin-top: 22px;
-        padding-top: 18px;
-        border-top: 1px solid var(--line);
-      }
+      h1 { margin-top: 0; }
+      p { color: #cbd5e1; }
+      a { color: #7dd3fc; }
     </style>
   </head>
   <body>
-    <main class="container">
-      <article class="card">
+    <div class="wrap">
+      <div class="card">
         <h1>My Journey with TP-Link xx530v V2</h1>
-
         <p>
-          One day, a new TP-Link xx530v V2 router ended up in my hands, and the idea of running OpenWrt on it immediately caught my attention. Based on materials found online, especially from <a href="https://github.com/Sirherobrine23/" target="_blank" rel="noreferrer">Sirherobrine23</a>, I started preparing the environment and gathering the information needed to work on the device.
+          Starting from the official firmware, I managed to port OpenWrt to this router and bring up a fully functional OpenWrt-based system. The work included adding support for the optical link path in three parts: the laser driver, the GPON MAC/PHY driver, and the userspace configuration layer responsible for device setup.
         </p>
-
         <p>
-          After powering the device on and gaining access to the serial console, I discovered something important: the serial interface was not locked, but the V2 hardware was completely different from what I had initially expected. It turned out to be built around the AN7551CT processor, which meant the assumptions I had started with were no longer valid.
+          In parallel, I also enabled hardware offload acceleration for traffic processing by implementing the first generation of WED support, a mechanism also used in older routers such as MT7621. This effort also improved the hardware-assisted WED behavior on mt7916 and helped reduce bufferbloat.
         </p>
-
-        <p>
-          Using the x-wrt repositories, I was able to generate an OpenWrt initramfs image to get into the system and access the filesystem, then dump the OEM software. This was a crucial step because it allowed me to work with the actual device instead of guessing based on the wrong hardware revision. In the end, there was no need to look for a workaround like the one described in <a href="https://www.tp-link.com/us/support/faq/5239/" target="_blank" rel="noreferrer">TP-Link's FAQ</a> just to reach the filesystem.
-        </p>
-
-        <div class="meta">
-          <a href="wiki/openwrt-tp-link-xx530v-v2.html">Read the full technical story</a>
-        </div>
-      </article>
-    </main>
+        <p><a href="wiki/test.html">Read the test wiki page</a></p>
+      </div>
+    </div>
   </body>
 </html>
